@@ -21,7 +21,7 @@ class GroupsController < ApplicationController
 				@group.user_groups.create(user_id: user_id)
 			end
 		end
-		redirect_to :groups, notice: 'Group created sucssefully'
+		redirect_to :groups, notice: 'Group created successfully'
 	end
 
 	# Destroy group

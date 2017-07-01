@@ -11,7 +11,7 @@ class BillsController < ApplicationController
 	# Add new bill
 	def create
 		@group.bills.create(bill_params)
-		redirect_to :groups, notice: 'Bill created sucssefully'
+		redirect_to :groups, notice: 'Bill created successfully'
 	end
 
 	# Show all bills
@@ -36,7 +36,5 @@ class BillsController < ApplicationController
 		def bill_params
 			params.require(:bill).permit(:name, :location, :amount, :user_id, :payment_date)
 		end
-
-
 
 end

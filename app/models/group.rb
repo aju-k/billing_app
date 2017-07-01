@@ -16,41 +16,29 @@ class Group < ActiveRecord::Base
 
 	# Get equal share
 	def split_total_amt(current_user)
-		hash = {}; array = [];
+		result_array = [];
 		equal_share = (get_total_expense / get_no_of_users).round(2) rescue 0
-		 user_share = current_user.user_expense(self.id)
-		 my_remaing_share = equal_share - user_share 
-		 if my_remaing_share > 0
-			(self.users - [current_user]).each do |user|
-			 	remaing_amt = equal_share - user.user_expense(self.id)
-			 	if remaing_amt < 0 
-			 		# pay to him
-			 		if my_remaing_share >= remaing_amt.abs
-			 			array.push([user.email, remaing_amt.abs ,'pay him'] )
-			 		else
-			 			array.push([user.email ,my_remaing_share.abs, 'pay him'] )
-			 		end
-			 	end
-			end
-		else
-			(self.users - [current_user]).each do |user|
-				remaing_amt = equal_share - user.user_expense(self.id)
-				if remaing_amt > 0 
-					if my_remaing_share.abs >= remaing_amt
-						array.push([user.email, remaing_amt.abs ,'owes you'] )
-					else
-						array.push([user.email ,my_remaing_share.abs, 'owes you'] )
+		user_share = current_user.user_expense(self.id)
+		my_remaining_share = equal_share - user_share
+		all_users = self.users - [current_user]
+		type = my_remaining_share > 0 ? 'pay him' : 'owes you'
+		result_array = find_user_split_amt(all_users, equal_share, my_remaining_share, type, result_array)
+		return result_array
+	end
+
+	# Find split for each user in group
+	def find_user_split_amt(all_users, equal_share ,my_remaining_share, type, result_array)
+			all_users.each do |user|
+				remaining_amt = equal_share - user.user_expense(self.id)
+					if remaining_amt > 0
+						if my_remaining_share.abs >= remaining_amt
+							result_array.push([user.email, remaining_amt.abs ,type] )
+						else
+							result_array.push([user.email ,my_remaining_share.abs, type] )
+						end
 					end
-				end
 			end
-		end
-
-		return array	
-
+		result_array
 	end
 
-	def calculate_amt(user)
-		(get_total_expense - split_total_amt).round(2) rescue 0
-		#- user.user_expense(self.id)
-	end
 end
