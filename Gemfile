@@ -48,3 +48,4 @@ end
 
 gem 'devise'
 gem 'pry'
+gem 'rails_12factor'
