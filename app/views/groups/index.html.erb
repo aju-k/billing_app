@@ -1,0 +1,30 @@
+<div class='container'>
+	<h2>Groups</h2>
+
+	<table class="table table-bordered table-striped">
+		<tr>
+			<th>Sr No</th>	
+			<th>Name</th>
+			<th>No Of Users</th>
+			<th>Total Expense</th>
+			<th>Actions</th>
+		</tr>
+		<% counter = 0%>
+		<% @groups.each do |group|%>
+			<tr>
+				<td><%= counter += 1%></td>
+				<td><%= group.name %></td>
+				<td><%= group.get_no_of_users %></td>
+				<td><%= group.get_total_expense%></td>
+				<td>
+					<%= link_to 'Details', all_bills_path(group.id),class: 'btn-sm' %>
+					<%= link_to 'Delete', group, method: :delete, data: { confirm: 'Are you sure?' },class: 'btn-sm' %>
+				</td>
+			</tr>
+		</a>	
+		<% end %>
+	</table>
+
+<%= link_to 'New Group', new_group_path, class: 'btn btn-sm btn-primary' %>	
+
+</div>

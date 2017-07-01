@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>BillingApp</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+<%= render 'layouts/partials/header'%>
+<div class="container container-fluid text-center">
+	<div class="row content">
+		<div class="col-md-2 sidenav">
+    	  <p>ramesh@gmail.com - 123456</p>
+	      <p>suresh@gmail.com - 123456</p>
+	      <p>abhijeet@gmail.com - 123456</p>
+	      <p>aditya@gmail.com - 123456</p>
+    	</div>
+	    <div class="col-md-10 text-left"> 
+			<%= yield %>
+		</div>
+	</div>
+</div>
+</body>
+</html>
+

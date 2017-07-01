@@ -1,0 +1,32 @@
+<%= stylesheet_link_tag 'prism','chosen.min'%>
+<div class='container'>
+
+	<h2>Create New Group</h2>
+
+	<%= form_for @group do |f|%>
+
+		<div class="fields">
+			<%= f.label :name  %>
+			<%= f.text_field :name, class: 'form-control', required: true %>
+		</div><br>
+
+		<div class="fields">
+			<%= f.label :description %>
+			<%= f.text_area :description , class: 'form-control'%>
+		</div><br>
+
+		<div class="fields">
+			<%= f.label :users%>
+			<%=select_tag "users", options_from_collection_for_select(@all_users, "id", "email"),  multiple: true, class: 'chosen-select form-control' %>
+		</div><br>
+
+		<div class="fields">
+			<%= f.submit %>
+		</div>
+
+		
+
+	<% end %>
+
+</div>
+<%= javascript_include_tag 'chosen.jquery.min', 'prism', 'init'%>

@@ -1,0 +1,31 @@
+<div class="container">
+
+<h2>All Bills</h2>	
+	<table class="table table-bordered table-striped">
+		<tr>
+			<th>Event</th>
+			<th>Location</th>
+			<th>Amount</th>
+			<th>Paid By</th>
+			<th>Payment Date</th>
+		</tr>
+
+		<% @bills.each do |bill| %>
+			<tr>
+				<td><%= bill.name %></td>
+				<td><%= bill.location %></td>
+				<td><%= bill.amount %></td>
+				<td><%= bill.user.email %></td>
+				<td><%= format_date(bill.payment_date)%></td>
+				
+			</tr>
+		<% end %>
+	</table>
+
+	
+
+<%= link_to 'Add New Bill', new_group_bill_path(@group.id),class: 'btn btn-primary btn-sm' %>
+<%= link_to 'Split Bills', split_bills_path(@group.id), class: 'btn btn-sm btn-primary'%>
+
+
+</div>

@@ -1,0 +1,27 @@
+<div class="container">
+
+<h2><%= current_user.email %></h2>
+
+	<table class="table table-bordered table-striped">
+
+		<tr>
+			<th>Name</th>
+			<th>Amount</th>
+			<th>Status</th>
+		</tr>
+
+		<% @results.each do |email, amt, status| %>
+
+			<tr>
+				<td><%= email %></td>
+				<td><%= amt %></td>
+				<td class="<%= status %>"><%= status %></td>
+			</tr>
+
+		<% end %>
+
+
+
+	</table>
+
+</div>

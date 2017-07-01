@@ -1,0 +1,39 @@
+<div class='container'>
+	<h1>Add Bill</h1>
+	<%= form_for(:bill, url: group_bills_path) do |f|%>
+
+		<div class="fields">
+			<%= f.label :name  %>
+			<%= f.select :name , options_for_select(['Tea', 'Lunch', 'Dinner']), {}, class: 'form-control'%>
+		</div><br>
+
+		<div class="fields">
+			<%= f.label :location %>
+			<%= f.text_field :location , class: 'form-control'%>
+		</div><br>
+
+		<div class="fields">
+			<%= f.label :amount %>
+			<%= f.number_field :amount, class: 'form-control' %>
+		</div><br>
+
+
+		<div class="fields">
+			<%= f.label :payment_date %>
+			<%= f.date_field :payment_date, class: 'form-control', max: Date.today %>
+		</div><br>
+
+
+		<div class="fields">
+			<%= f.label :paid_by %>
+			<%= f.select :user_id, options_for_select(@users), {}, class: 'form-control', prompt: 'Select'  %>
+		</div><br>
+
+		<%= f.submit %>
+
+	<% end %>
+
+</div>
+<script type="text/javascript">
+  $("#add_users").multiSelect();
+</script>

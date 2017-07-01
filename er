@@ -1,0 +1,30 @@
+
+[1mFrom:[0m /home/ajinkya/Projects/billing_app/app/models/group.rb @ line 25 Group#split_total_amt:
+
+    [1;34m18[0m: [32mdef[0m [1;34msplit_total_amt[0m(user)
+    [1;34m19[0m: 	hash = {}
+    [1;34m20[0m: 	equal_share = (get_total_expense / get_no_of_users).round([1;34m2[0m) [32mrescue[0m [1;34m0[0m
+    [1;34m21[0m: 	 user_share = user.user_expense([1;36mself[0m.id)
+    [1;34m22[0m: 	 my_remaing_share = equal_share - user_share 
+    [1;34m23[0m: 	 [32mif[0m my_remaing_share > [1;34m0[0m
+    [1;34m24[0m: 		[[1;36mself[0m.users - [user]].each [32mdo[0m |user|
+ => [1;34m25[0m: 			binding.pry
+    [1;34m26[0m: 		 	remaing_amt = equal_share - user.user_expense([1;36mself[0m.id)
+    [1;34m27[0m: 		 	[32mif[0m remaing_amt < [1;34m0[0m 
+    [1;34m28[0m: 		 		[1;34m# pay to him[0m
+    [1;34m29[0m: 		 		[32mif[0m my_remaing_share >= remaing_amt.abs
+    [1;34m30[0m: 		 			hash[user.email] = remaing_amt.abs
+    [1;34m31[0m: 		 		[32melse[0m
+    [1;34m32[0m: 		 			hash[user.email] = my_remaing_share
+    [1;34m33[0m: 		 		[32mend[0m
+    [1;34m34[0m: 		 	[32melse[0m
+    [1;34m35[0m: 		 		[1;34m# He will pay me[0m
+    [1;34m36[0m: 
+    [1;34m37[0m: 		 	[32mend[0m
+    [1;34m38[0m: 		 [32mend[0m
+    [1;34m39[0m: 	[32mend[0m
+    [1;34m40[0m: 
+    [1;34m41[0m: 	[32mreturn[0m hash	
+    [1;34m42[0m: 
+    [1;34m43[0m: [32mend[0m
+
