@@ -15,7 +15,7 @@
 
 		<div class="fields">
 			<%= f.label :amount %>
-			<%= f.number_field :amount, min: 0 ,class: 'form-control' %>
+			<%= f.number_field :amount, min: 0 ,class: 'form-control', required: true %>
 		</div><br>
 
 
@@ -27,7 +27,7 @@
 
 		<div class="fields">
 			<%= f.label :paid_by %>
-			<%= f.select :user_id, options_for_select(@users), {}, class: 'form-control', prompt: 'Select'  %>
+			<%= f.select :user_id, options_for_select(@users), {}, class: 'form-control', prompt: 'Select' %>
 		</div><br>
 
 		<%= f.submit %>

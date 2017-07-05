@@ -1,6 +1,6 @@
 <div class="container">
 
-<h2>All Bills</h2>	
+  <h2><b><%= @group.name %></b> Bills</h2>
 	<table class="table table-bordered table-striped">
 		<tr>
 			<th>Event</th>
@@ -17,7 +17,6 @@
 				<td><%= bill.amount %></td>
 				<td><%= bill.user.email %></td>
 				<td><%= format_date(bill.payment_date)%></td>
-				
 			</tr>
 		<% end %>
 	</table>
